@@ -4,11 +4,8 @@ function LinkedList () {
 
     this.append = function (value){
         this.size +=1;
-        if(this.size == 1) {
-            this.List[this.size] = new Node (value,null,true);
-        }
-        else {
-            this.List[this.size] = new Node (value,null,false);
+        this.List[this.size] = new Node (value,null);
+        if(this.size>1){
             this.List[this.size-1]["nextNode"] = this.size;
         }
     }
@@ -17,26 +14,23 @@ function LinkedList () {
         this.size +=1;
         let temp1 = null;
         let temp2 = null;  
-        evenIndex = false;  
         for(let index in this.List){
             if(index == 1){
                 temp1 = this.List[1];
-                this.List[1] = new Node(value,null,true);
-                this.List[1]["nextNode"] = this.List[2] == null ? null : 2; 
-                evenIndex = true;  
+                this.List[1] = new Node(value,null);
+                this.List[1]["nextNode"] = this.List[2] == null ? null : 2;  
             }
-            else if(evenIndex == true){
+            else if(index%2 == 0){
                 temp2 = this.List[index];
                 this.List[index] = temp1; 
                 this.List[index]["nextNode"] = Number(index)+1; 
                 evenIndex = false;
                 if(index == 2){this.List[index]["startNode"]=false};
             }
-            else if(evenIndex == false){
+            else if(index%2 != 0){
                 temp1 = this.List[index];
                 this.List[index] = temp2;
                 this.List[index]["nextNode"] = Number(index)+1;
-                evenIndex = true; 
             }
             if(index==this.size-1){
                 let lastIndex = Number(index) + 1 ; 
@@ -73,6 +67,9 @@ function LinkedList () {
         return temp;
     }
 
+    this.toString () {
+        
+    }
 }
 
 function Node (value,nextNode,isStartNode) {
