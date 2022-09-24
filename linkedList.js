@@ -67,8 +67,13 @@ function LinkedList () {
         return temp;
     }
 
-    this.toString () {
-        
+    this.toString = function () {
+        let indexes = Object.keys(List);
+        indexes.sort((a,b)=>a-b);
+        if(indexes.length=0){return} 
+        let str = ;
+        for
+
     }
 }
 
