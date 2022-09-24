@@ -88,7 +88,10 @@ function LinkedList () {
         }
         return indexes.length==0 ? null : indexes; 
     }
+
+    
 }
+
 
 function Node (value,nextNode) {
     this.value = value; 
