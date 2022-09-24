@@ -14,23 +14,26 @@ function LinkedList () {
         this.size +=1;
         let temp1 = null;
         let temp2 = null;  
+        evenIndex = false;  
         for(let index in this.List){
             if(index == 1){
                 temp1 = this.List[1];
                 this.List[1] = new Node(value,null);
-                this.List[1]["nextNode"] = this.List[2] == null ? null : 2;  
+                this.List[1]["nextNode"] = this.List[2] == null ? null : 2; 
+                evenIndex = true;  
             }
-            else if(index%2 == 0){
+            else if(evenIndex == true){
                 temp2 = this.List[index];
                 this.List[index] = temp1; 
                 this.List[index]["nextNode"] = Number(index)+1; 
                 evenIndex = false;
                 if(index == 2){this.List[index]["startNode"]=false};
             }
-            else if(index%2 != 0){
+            else if(evenIndex == false){
                 temp1 = this.List[index];
                 this.List[index] = temp2;
                 this.List[index]["nextNode"] = Number(index)+1;
+                evenIndex = true; 
             }
             if(index==this.size-1){
                 let lastIndex = Number(index) + 1 ; 
@@ -67,20 +70,29 @@ function LinkedList () {
         return temp;
     }
 
-    this.toString = function () {
-        let indexes = Object.keys(List);
-        indexes.sort((a,b)=>a-b);
-        if(indexes.length=0){return} 
-        let str = ;
-        for
+    this.contains = function (value) {
+        for(let index in this.List){
+            if(this.List[index]["value"]==value){
+                return true;
+            }
+        }
+        return false; 
+    }
 
+    this.find = function (value) {
+        let indexes = [];
+        for(let index in this.List){
+            if(this.List[index]["value"]==value){
+                indexes.push(index);
+            }
+        }
+        return indexes.length==0 ? null : indexes; 
     }
 }
 
 function Node (value,nextNode,isStartNode) {
     this.value = value; 
     this.nextNode = nextNode ; 
-    this.startNode = isStartNode; 
 }
 
 let myList = new LinkedList();
