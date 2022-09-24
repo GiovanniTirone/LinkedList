@@ -89,6 +89,16 @@ function LinkedList () {
         return indexes.length==0 ? null : indexes; 
     }
 
+    this.toString = function () {
+        let indexes = Object.keys(this.List).sort((a,b)=>a-b);
+        if(indexes.length==0){return "There is nothing to print"};
+        let str = "(" + JSON.stringify(this.List[1]["value"]) + ")";
+        for(let i=2; i<=indexes.length; i++) {
+            str += " -> (" + JSON.stringify(this.List[i]["value"]) + ")";
+        }
+        str += " -> null"; 
+        return str; 
+    }
     
 }
 
@@ -111,3 +121,4 @@ console.log(myList);
 console.log("head: "+ JSON.stringify(myList.head()));
 console.log("tail: "+ JSON.stringify(myList.tail()));
 console.log("index 3: "+ JSON.stringify(myList.at(3)));
+console.log(myList.toString());
