@@ -90,16 +90,39 @@ function LinkedList () {
     }
 
     this.toString = function () {
-        let indexes = Object.keys(this.List).sort((a,b)=>a-b);
-        if(indexes.length==0){return "There is nothing to print"};
+        //let indexes = Object.keys(this.List).sort((a,b)=>a-b);
+        if(size==0){return "There is nothing to print"};
         let str = "(" + JSON.stringify(this.List[1]["value"]) + ")";
-        for(let i=2; i<=indexes.length; i++) {
+        for(let i=2; i<=size; i++) {
             str += " -> (" + JSON.stringify(this.List[i]["value"]) + ")";
         }
         str += " -> null"; 
         return str; 
     }
     
+    this.insertAt = function (value,index) {
+        //let indexes = Object.keys(this.List).sort((a,b)=>a-b);
+        if(index<1){
+            console.log("The index must be bigger or equal than 1");
+            return;  
+        }
+        else if(index>size+1){
+            let maxIndex = size + 1 ; 
+            console.log("The maximum index ammited is " + maxIndex);
+            return;
+        }
+        let temp1 = null;
+        let temp2 = null;
+        if(index%2==0)
+            temp1 = this.List[index];
+        else{
+            temp2 = this.List[index];
+        }
+        this.List[index] = new Node(value,index+1); 
+        for(let i=index+1; i<size+1; i++){
+            
+        }
+    }
 }
 
 
