@@ -77,10 +77,9 @@ function LinkedList () {
     }
 }
 
-function Node (value,nextNode,isStartNode) {
+function Node (value,nextNode,) {
     this.value = value; 
     this.nextNode = nextNode ; 
-    this.startNode = isStartNode; 
 }
 
 let myList = new LinkedList();
