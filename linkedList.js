@@ -98,7 +98,7 @@ function LinkedList () {
             return;  
         }
         else if(index>this.size+1){
-            let maxIndex = thid.size + 1 ; 
+            let maxIndex = this.size + 1 ; 
             console.log("The maximum index ammited is " + maxIndex);
             return;
         }
@@ -106,7 +106,22 @@ function LinkedList () {
     }
 
     this.removeAt = function (index) {
-        
+        if(index<1){
+            console.log("The index must be bigger or equal than 1");
+            return;  
+        }
+        else if(index>this.size+1){
+            let maxIndex = this.size + 1 ; 
+            console.log("The maximum index ammited is " + maxIndex);
+            return;
+        }
+        for(let i=0; i<this.size-index; i++){
+            this.List[index+i]=this.List[index+i+1];
+            this.List[index+i]["nextNode"] = index+i+1;
+        }
+        delete this.List[this.size];
+        this.size -=1;
+        this.List[this.size]["nextNode"]=null;
     }
 
 }
@@ -117,18 +132,3 @@ function Node (value,nextNode) {
     this.nextNode = nextNode ; 
 }
 
-let myList = new LinkedList();
-myList.append(1293);
-myList.append(8);
-myList.prepend(23);
-console.log(myList);
-myList.insertAt(2,"vdvd");
-console.log(myList);
-/*
-console.log("removed element" , myList.pop());
-console.log(myList);
-console.log("head: "+ JSON.stringify(myList.head()));
-console.log("tail: "+ JSON.stringify(myList.tail()));
-console.log("index 3: "+ JSON.stringify(myList.at(3)));
-console.log(myList.toString());
-*/
