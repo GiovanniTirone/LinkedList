@@ -82,7 +82,6 @@ function LinkedList () {
     }
 
     this.toString = function () {
-        //let indexes = Object.keys(this.List).sort((a,b)=>a-b);
         if(this.size==0){return "There is nothing to print"};
         let str = "(" + JSON.stringify(this.List[1]["value"]) + ")";
         for(let i=2; i<=this.size; i++) {
