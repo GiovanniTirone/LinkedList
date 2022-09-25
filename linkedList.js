@@ -14,26 +14,22 @@ function LinkedList () {
         this.size +=1;
         let temp1 = null;
         let temp2 = null;  
-        evenIndex = false;  
         for(let index in this.List){
             if(index == 1){
                 temp1 = this.List[1];
                 this.List[1] = new Node(value,null);
                 this.List[1]["nextNode"] = this.List[2] == null ? null : 2; 
-                evenIndex = true;  
             }
-            else if(evenIndex == true){
+            else if(index%2==0){
                 temp2 = this.List[index];
                 this.List[index] = temp1; 
                 this.List[index]["nextNode"] = Number(index)+1; 
-                evenIndex = false;
-                if(index == 2){this.List[index]["startNode"]=false};
             }
-            else if(evenIndex == false){
+            else {
                 temp1 = this.List[index];
                 this.List[index] = temp2;
                 this.List[index]["nextNode"] = Number(index)+1;
-                evenIndex = true; 
+
             }
             if(index==this.size-1){
                 let lastIndex = Number(index) + 1 ; 
@@ -48,6 +44,28 @@ function LinkedList () {
         }  
 
     } 
+
+    function shiftList (starterIndex,nodeToInsert) {
+        let temp1 = null; 
+        let temp2 = null; 
+        temp1 = this.List[starterIndex];
+        this.List[starterIndex] = nodeToInsert;
+        this.List[starterIndex]["nextNode"] = this.List[Number(starterIndex)+1] == null ? null : starterIndex+1; 
+        for(let index = starterIndex+1 ; index<=size ; index++){
+            if(index%2==0){
+                temp2 = this.List[index];
+                this.List[index] = temp1; 
+                this.List[index]["nextNode"] = index+1; 
+            }
+            else {
+                temp1 = this.List[index];
+                this.List[index] = temp2;
+                this.List[index]["nextNode"] = index+1;
+            }
+        }  
+        List[size+1]["nextNode"]=null; 
+    }
+    
 
     this.head = function () {
         return this.List[1];
@@ -114,14 +132,15 @@ function LinkedList () {
         let temp1 = null;
         let temp2 = null;
         if(index%2==0)
-            temp1 = this.List[index];
-        else{
             temp2 = this.List[index];
+            this.List[index] = new Node(value,index+1); 
+            for(let i=index+1; i<size+1; i++){
+                
+            }
+        else{
+            temp1 = this.List[index];
         }
-        this.List[index] = new Node(value,index+1); 
-        for(let i=index+1; i<size+1; i++){
-            
-        }
+        
     }
 }
 
